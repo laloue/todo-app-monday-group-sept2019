@@ -8,7 +8,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <h1 id="mainHeading">Todo List</h1>
+        <h1 id="mainHeading">Todo List </h1>
         <h3>Things I need to do very soon.</h3>
         <div className="row">
           <div className="col-12 col-lg-6">
