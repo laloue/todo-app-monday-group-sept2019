@@ -7,7 +7,8 @@ class Item extends React.Component {
       <li className="list-group-item">
         <div className="row">
           <div className="col-8">
-            <span className={this.props.completed ? "completedItem" : ""}>
+            <span className={this.props.completed ? "completedItem mySpan" : "mySpan"}>
+              {/* first way of doing conditional logic ternary op above */}
               {this.props.text}
             </span>
           </div>
@@ -15,7 +16,8 @@ class Item extends React.Component {
             <button className="btn btn-info">Delete</button>
           </div>
           <div className="col-2">
-            <button className="btn btn-light">Done</button>
+            {this.props.completed===false && <button className="btn btn-light">Done</button>}
+             {/* if lhs is true then do right hand side of && */}
           </div>
         </div>
       </li>
