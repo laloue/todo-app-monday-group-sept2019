@@ -9,14 +9,14 @@ class App extends React.Component {
   // define state at top of parent or top level component
   // always an object
   // not const state just state this is ES7 - new way of saying constructor
-  state={
-    tasks:[
-      {text:"walk the cat", completed:true, date:"2019-10-20", id:uuid()},
-      {text:"buy oats", completed:false, date:"2019-10-21", id:uuid() },
-      {text:"learn React", completed:false, date:"2019-10-16", id:uuid() },
-      {text:"wash slippers", completed:true, date:"2019-10-10", id:uuid() },
-      {text:"de-flea the cat", completed:true, date:"2019-10-31", id:uuid()},
-      {text:"shop", completed:true, date:"2019-10-16", id:6}
+  state = {
+    tasks: [
+      { text: "walk the cat", completed: true, date: "2019-10-20", id: uuid() },
+      { text: "buy oats", completed: false, date: "2019-10-21", id: uuid() },
+      { text: "learn React", completed: false, date: "2019-10-16", id: uuid() },
+      { text: "wash slippers", completed: true, date: "2019-10-10", id: uuid() },
+      { text: "de-flea the cat", completed: true, date: "2019-10-31", id: uuid() },
+      { text: "shop", completed: true, date: "2019-10-16", id: uuid() }
     ]
   }
   // write method on app has to live where state lives
@@ -24,10 +24,10 @@ class App extends React.Component {
   // use arrow notation - ensure 'this' is correct, also good practice because we are using recent js
 
   addTask = (taskText) => {
-     // create new task with default completed and date props
-     // add task to state
+    // create new task with default completed and date props
+    // add task to state
     //  console.log(taskText);
-    const newTask={
+    const newTask = {
       text: taskText,
       completed: false,
       date: "2019-10-21",
@@ -36,11 +36,19 @@ class App extends React.Component {
     // always use setState to update state
     // take a copy
     // never do this.state.tasks.push(item)
-    const tasksCopy=this.state.tasks.slice();
+    const tasksCopy = this.state.tasks.slice();
     tasksCopy.push(newTask);
     this.setState({
       tasks: tasksCopy
     })
+  }
+
+  deleteTask = (taskId) => {
+    const existingTasks = this.state.tasks;
+    const filteredTasks = existingTasks.filter((item) => {
+      return item.id !== taskId;
+    });
+    this.setState({ tasks: filteredTasks })
   }
 
   render() {
@@ -50,13 +58,18 @@ class App extends React.Component {
         <h3>Things I need to do very soon.</h3>
         <div className="row">
           <div className="col-12 col-lg-6">
-            <AddItem addTaskFunc={this.addTask}/>
+            <AddItem addTaskFunc={this.addTask} />
           </div>
           <div className="col-12 col-lg-6">
             <ItemCount count={this.state.tasks.length} />
             <ul id="itemList">
               {this.state.tasks.map(item => {
-                 return <Item key={item.id} text={item.text} completed={item.completed} date={item.date}/>
+                return <Item key={item.id}
+                  taskId={item.id}
+                  text={item.text}
+                  completed={item.completed}
+                  date={item.date}
+                  deleteTaskFunc={this.deleteTask} />
               })}
             </ul>
           </div>

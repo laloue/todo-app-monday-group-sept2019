@@ -2,6 +2,10 @@ import React from "react";
 import "./Item.css";
 
 class Item extends React.Component {
+
+  trashClicked= () =>{
+    this.props.deleteTaskFunc(this.props.taskId);
+  }
   render() {
     return (
       <li className="list-group-item">
@@ -14,7 +18,7 @@ class Item extends React.Component {
           </div>
           <div className="col-2">
             {/* <button className="btn btn-info">Delete</button> */}
-            <i className="fas fa-trash"> </i>
+            <i className="fas fa-trash" onClick={this.trashClicked}> </i>
           </div>
           <div className="col-2">
             {/* {this.props.completed===false && <button className="btn btn-light">Done</button>} */}

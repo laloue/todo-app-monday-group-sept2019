@@ -25,6 +25,10 @@ class AddItem extends React.Component {
     })
   }
 
+  mouseOverButton=() =>{
+    // alert('hiya')
+  }
+
   render() {
     // JSX is NOT HTML
     return (
@@ -41,6 +45,9 @@ class AddItem extends React.Component {
           <button id="addButton" className="btn" onClick={this.handleClick}>
             Add to list
           </button>
+          {/* <button id="helloButton" className="btn" onMouseOver={this.mouseOverButton} >
+            Hello
+          </button> */}
         </div>
       </section>
     );
