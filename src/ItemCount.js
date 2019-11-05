@@ -1,10 +1,10 @@
 import React from "react";
 
-class ItemCount extends React.Component {
+export class ItemCount extends React.Component {
   render() {
     return (
       <p>
-        You have <strong>{this.props.count}</strong> things left to do
+        You have <strong>{this.props.count}</strong> incompleted tasks.
       </p>
     );
   }
